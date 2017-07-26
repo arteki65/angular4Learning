@@ -2,10 +2,7 @@
   <div class="panel panel-default">
     <div class="panel-heading">{{ serverData.name }}</div>
     <div class="panel-body">
-      <p>
-        <strong *ngIf="serverData.type === 'server'" style="color: red">{{ serverData.content }}</strong>
-        <em *ngIf="serverData.type === 'blueprint'">{{ serverData.content }}</em>
-      </p>
+      <ng-content></ng-content>
     </div>
   </div>
 </div>

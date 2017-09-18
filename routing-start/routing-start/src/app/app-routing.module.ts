@@ -8,13 +8,17 @@ import {UserComponent} from './users/user/user.component';
 import {UsersComponent} from './users/users.component';
 import {HomeComponent} from './home/home.component';
 import {RouterModule, Routes} from '@angular/router';
+import {AuthGuardService} from "./auth-guard.service";
 
 const appRoutes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'users', component: UsersComponent, children: [
     {path: ':id/:name', component: UserComponent}
   ]},
-  {path: 'servers', component: ServersComponent, children: [
+  {path: 'servers',
+    canActivate: [AuthGuardService],
+    component: ServersComponent,
+    children: [
     {path: ':id/edit', component: EditServerComponent},
     {path: ':id', component: ServerComponent}
   ]},

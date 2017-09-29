@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <p *ngIf="f.invalid && f.touched">Form is invalid!</p>
+      <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            class="form-control"
+            ngModel
+            name="email"
+            required
+            email
+            #email="ngModel">
+        </div>
+        <p *ngIf="email.invalid && email.touched">Email is invalid!</p>
+        <div class="form-group">
+          <label for="subscription">Secret Questions</label>
+          <select
+            id="subscription"
+            class="form-control"
+            [ngModel]="defaultSubscription"
+            name="subscription">
+            <option value="Basic">Basic</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Pro">Pro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            class="form-control"
+            ngModel
+            name="password"
+            required
+            #password="ngModel">
+        </div>
+        <p *ngIf="password.invalid && password.touched">Password is invalid!</p>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="f.invalid">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

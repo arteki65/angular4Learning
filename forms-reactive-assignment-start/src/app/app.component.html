@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="projectForm" (ngSubmit)="onFormSubmit()">
+        <div class="form-group">
+          <label for="project-name">Project name</label>
+          <input type="text" id="project-name" class="form-control" formControlName="projectName">
+          <span class="help-block"
+            *ngIf="projectForm.get('projectName').errors
+            && projectForm.get('projectName').errors['projectNameCantBeTest']">
+            Project name can't be 'Test'. Please change it!
+          </span>
+          <span class="help-block"
+                *ngIf="projectForm.get('projectName').errors
+            && projectForm.get('projectName').errors['projectNameForbiddenByExternalService']">
+            Project name forbidden by external service. Please change it!
+          </span>
+        </div>
+        <div class="form-group">
+          <label for="mail">Email</label>
+          <input type="text" id="mail" class="form-control" formControlName="mail">
+        </div>
+        <div class="form-group">
+          <label for="project-status">Project status</label>
+          <select id="project-status" class="form-control" formControlName="projectStatus">
+            <option *ngFor="let status of statuses" [value]="status">{{status}}</option>
+          </select>
+        </div>
+        <span class="help-block"
+          *ngIf="projectForm.invalid && projectForm.touched">
+          Please enter a valid data!
+        </span>
+        <button class="btn btn-primary" type="submit" [disabled]="projectForm.invalid || projectForm.pending">
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
